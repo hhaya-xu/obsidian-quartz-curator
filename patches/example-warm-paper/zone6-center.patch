@@ -1,0 +1,223 @@
+﻿*** Begin Patch
+*** Update File: quartz/styles/custom.scss
+@@ @zone:center
+-/* @zone:center */
++/* @zone:center */
++.center article {
++  max-width: 680px;
++  margin: 0 auto;
++  font-size: 17px;
++  line-height: 1.85;
++  color: #1c1814;
++}
++
++.center article h1 {
++  font-size: 36px;
++  font-weight: 500;
++  color: #1c1814;
++  margin: 0 0 16px;
++  letter-spacing: -0.01em;
++}
++
++.center article h2 {
++  font-size: 24px;
++  font-weight: 500;
++  color: #1c1814;
++  margin: 48px 0 16px;
++  padding-bottom: 8px;
++  border-bottom: 0.5px solid #d4c9b0;
++}
++
++.center article h3 {
++  font-size: 19px;
++  font-weight: 500;
++  color: #4a3f35;
++  margin: 32px 0 12px;
++}
++
++.center article p {
++  margin: 0 0 20px;
++}
++
++.center article a {
++  color: #b8860b;
++  text-decoration: none;
++  border-bottom: 0.5px solid rgba(184,134,11,0.3);
++}
++
++.center article a:hover {
++  color: #9a6f09;
++  border-bottom-color: #b8860b;
++}
++
++.center article blockquote {
++  border-left: 3px solid #b8860b;
++  background: #f4efe2;
++  margin: 24px 0;
++  padding: 16px 20px;
++  border-radius: 0 6px 6px 0;
++  color: #4a3f35;
++  font-style: italic;
++}
++
++.center article pre {
++  background: #f4efe2;
++  border: 0.5px solid #d4c9b0;
++  border-radius: 4px;
++  padding: 16px 20px;
++  overflow-x: auto;
++  font-family: "Geist Mono", ui-monospace, monospace;
++  font-size: 14px;
++  line-height: 1.6;
++}
++
++.center article code {
++  font-family: "Geist Mono", ui-monospace, monospace;
++  font-size: 14px;
++  background: #f4efe2;
++  padding: 2px 6px;
++  border-radius: 3px;
++  border: 0.5px solid #d4c9b0;
++}
++
++.center article pre code {
++  background: none;
++  padding: 0;
++  border: 0;
++}
++
++.content-meta {
++  display: block;
++  font-family: "Geist Mono", monospace;
++  font-size: 10.5px;
++  color: #6b5f52;
++  margin-bottom: 32px;
++}
++
++/* === 首页元素（来自文姬首页功能规划） === */
++
++.home-stats {
++  display: flex;
++  gap: 32px;
++  margin: 20px 0 32px;
++  font-family: "Geist Mono", ui-monospace, monospace;
++  font-size: 13px;
++  color: #6b5f52;
++}
++
++.home-stats span {
++  font-variant-numeric: tabular-nums;
++}
++
++.project-cards {
++  display: grid;
++  grid-template-columns: 1fr 1fr;
++  gap: 16px;
++  margin: 28px 0 36px;
++}
++
++.project-card {
++  background: #f4efe2;
++  border: 1px solid #d4c9b0;
++  border-radius: 5px;
++  padding: 20px 22px;
++  text-decoration: none;
++  display: block;
++  transition: background 0.2s, border-color 0.2s;
++}
++
++.project-card:hover {
++  background: #ede3cf;
++  border-color: #b8860b;
++}
++
++.project-card .card-icon {
++  font-family: "Noto Serif SC", "Songti SC", serif;
++  font-size: 36px;
++  color: #b8860b;
++  line-height: 1;
++  margin-bottom: 12px;
++}
++
++.project-card .card-title {
++  font-size: 18px;
++  font-weight: 500;
++  color: #1c1814;
++  margin-bottom: 6px;
++}
++
++.project-card .card-desc {
++  font-size: 14px;
++  color: #6b5f52;
++  line-height: 1.6;
++}
++
++@media (max-width: 720px) {
++  .project-cards {
++    grid-template-columns: 1fr;
++  }
++}
++
++.recent-notes {
++  list-style: none;
++  padding: 0;
++  margin: 24px 0 36px;
++}
++
++.recent-notes li {
++  padding: 10px 0;
++  border-bottom: 0.5px solid #d4c9b0;
++  display: flex;
++  align-items: baseline;
++  gap: 12px;
++}
++
++.recent-notes li a {
++  font-size: 15px;
++  color: #1c1814;
++  text-decoration: none;
++}
++
++.recent-notes li a:hover {
++  color: #b8860b;
++}
++
++.recent-notes .note-date {
++  font-family: "Geist Mono", ui-monospace, monospace;
++  font-size: 11px;
++  color: #6b5f52;
++  white-space: nowrap;
++}
++
++.recent-notes .note-tag {
++  font-family: "Geist Mono", ui-monospace, monospace;
++  font-size: 10px;
++  color: #b8860b;
++  white-space: nowrap;
++}
++
++.tag-cloud {
++  display: flex;
++  flex-wrap: wrap;
++  gap: 8px;
++  margin: 20px 0 28px;
++}
++
++.tag-cloud a {
++  font-family: "Geist Mono", ui-monospace, monospace;
++  font-size: 11px;
++  color: #6b5f52;
++  background: #f4efe2;
++  border: 1px solid #d4c9b0;
++  border-radius: 5px;
++  padding: 4px 10px;
++  text-decoration: none;
++  transition: border-color 0.2s, color 0.2s;
++}
++
++.tag-cloud a:hover {
++  border-color: #b8860b;
++  color: #b8860b;
++}
+
+*** End Patch

@@ -1,0 +1,129 @@
+*** Begin Patch
+*** Update File: quartz/styles/custom.scss
+@@ @zone:left-sidebar
+-/* @zone:left-sidebar */
++/* @zone:left-sidebar */
++.title-button {
++  font-family: "Geist Mono", ui-monospace, monospace;
++  font-size: 10px;
++  text-transform: uppercase;
++  color: #6b5f52;
++  letter-spacing: 0.08em;
++  margin-bottom: 20px;
++}
++
++.title-button:after {
++  content: "";
++  display: inline-block;
++  width: calc(100% - 12px);
++  height: 0.5px;
++  background: #d4c9b0;
++  margin-left: 12px;
++  vertical-align: middle;
++}
++
++svg.folder-icon {
++  width: 14px;
++  height: 14px;
++  color: #b8860b;
++  min-width: 14px;
++  margin-right: 8px;
++}
++
++.folder-container {
++  padding: 8px 0 4px;
++  margin-bottom: 20px;
++  border-radius: 5px;
++  border-bottom: 0.5px solid #d4c9b0;
++}
++
++.folder-container:hover {
++  background: #f4efe2;
++}
++
++.folder-container:hover .folder-title {
++  color: #b8860b;
++}
++
++.folder-title {
++  font-family: "Geist Mono", ui-monospace, monospace;
++  font-size: 12px;
++  text-transform: uppercase;
++  color: #6b5f52;
++  letter-spacing: 0.06em;
++}
++
++.folder-outer > ul {
++  margin: 0;
++  padding-left: 0;
++  border-left: 1px solid #d4c9b0;
++}
++
++.explorer-content ul li > a {
++  font-size: 13.5px;
++  color: #4a3f35;
++  padding: 4px 8px;
++  display: block;
++  text-decoration: none;
++  border-left: 2px solid transparent;
++  border-radius: 4px;
++}
++
++.explorer-content ul li > a:hover {
++  background: rgba(184,134,11,0.06);
++  border-left-color: #b8860b;
++  color: #1c1814;
++}
++
++.explorer-content ul li > a:before {
++  content: "\203A";
++  color: #b8860b;
++  margin-right: 6px;
++}
++
++/* sub-entries */
++.folder-outer > ul li > a {
++  font-size: 13px;
++  color: #6b5f52;
++  padding-left: 16px;
++  border-left: 1px solid #d4c9b0;
++}
++
++.folder-outer > ul li > a:hover {
++  color: #1c1814;
++  border-left-color: #b8860b;
++  background: rgba(184,134,11,0.06);
++}
++
++.folder-count {
++  font-family: "Geist Mono", monospace;
++  font-size: 9.5px;
++  color: #a09484;
++  margin-left: auto;
++  padding-left: 8px;
++  opacity: 0.8;
++}
++
++/* scrollbar */
++.left.sidebar::-webkit-scrollbar {
++  width: 4px;
++}
++
++.left.sidebar::-webkit-scrollbar-track {
++  background: transparent;
++}
++
++.left.sidebar::-webkit-scrollbar-thumb {
++  background: #d4c9b0;
++  border-radius: 2px;
++}
++
++.left.sidebar::-webkit-scrollbar-thumb:hover {
++  background: #b8860b;
++}
++
++.left.sidebar {
++  scrollbar-width: thin;
++  scrollbar-color: #d4c9b0 transparent;
++}
+*** End Patch
