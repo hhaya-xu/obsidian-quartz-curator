@@ -1,12 +1,12 @@
----
+﻿---
 name: obsidian-quartz-curator
 description: |
   将 Obsidian 知识库通过 Quartz 构建为静态网站。
   引导代理完成：布局选择 → 功能勾选 → preview-base 生成 → CSS 设计协作 → 部署上线。
   通过结构化沟通文件实现知识总管代理与设计智能体的零依赖协作。
-version: 0.5b
+version: 0.5c
 ---
-# obsidian-quartz-curator v0.5b
+# obsidian-quartz-curator v0.5c
 
 > 手动管线 | 逐步骤引导 | 基于 Quartz 的知识库发布协作技能
 
@@ -57,7 +57,7 @@ version: 0.5b
 本 Skill 的定位是 **Obsidian + Quartz 的发布协作层**。它假设：
 用户知识库通过 Quartz 构建为网站，管线负责配置、CSS 注入、部署的协作流程。
 
-v0.5b 不包含：
+v0.5c 不包含：
 - ❌ 一键全自动（export-preview.ts / translate-css.ts 等脚本——规划 v1.0）
 - ❌ 自动颜色映射（暂为手动——v1.0 目标）
 - ❌ CSS 校验/自动修复（暂无——未来目标）
@@ -77,8 +77,8 @@ v0.5b 不包含：
 
 | 场景 | 用户状态 | 后续流程 |
 |------|---------|---------|
-| A. 已有知识库 | Obsidian vault + Quartz + GitHub 已就绪 | Step 0a(验证) → Step 0b(验证) → Step 1 |
-| B. 从零创建 | 什么都没有，需要协助搭建 | Step 0a(创建vault) → Step 0b(创建Quartz+仓库) → Step 1 |
+| A. 已有知识库 | Obsidian vault + Quartz + GitHub 已就绪 | Step 0a(验证) → Step 0b(项目名) → Step 0c(验证) → Step 1 |
+| B. 从零创建 | 什么都没有，需要协助搭建 | Step 0a(创建vault) → Step 0b(项目名) → Step 0c(创建Quartz+仓库) → Step 1 |
 
 > 场景选择写入沟通文件 zone=layout 顶部：`场景：A 已有 / B 新建`。
 
@@ -96,7 +96,18 @@ v0.5b 不包含：
 
 ---
 
-### Step 0b: 部署目标
+### Step 0b: 项目名称
+
+代理询问：**你的项目叫什么名字？**
+
+| 用户应答 | 代理操作 |
+|---------|---------|
+| 有名称 | 记录项目名，进 Step 0c |
+| 没有 | 标记 ⚠️ 待补充，先略过，后面补 |
+
+---
+
+### Step 0c: 部署目标
 
 > **默认：GitHub Pages。** 这是我们唯一完整测试并确认国内可用的免费方案。
 > 代理不主动推荐其他平台——除非用户明确拒绝 GitHub。
@@ -119,9 +130,35 @@ v0.5b 不包含：
 - A. 左中右三栏 — 适合有知识图谱、反向链接的知识库
 - B. 左中两栏 — 适合博客型知识库
 
-**Q2: 你有设计智能体吗？**
+**Q2a: 你有设计智能体吗？**
 - 有 → 叫什么名字？（将写入沟通文件）
 - 没有 → Step 3~4 降级为用户手动写 CSS
+
+**Q2b: 沟通文件路径**
+
+> 当用户有设计智能体时，代理与设计智能体通过一个共享 Markdown 文件协作。
+> 代理必须先向用户说明：
+> - 这个文件的用途：你和设计智能体在这里交换 CSS 设计、验收结果、问题记录
+> - 后续怎么用：设计智能体写 CSS → 你看效果 → 代理转译部署 → 验收
+
+| 用户应答 | 代理操作 |
+|---------|---------|
+| 指定路径 | 使用该路径 |
+| 让我生成（推荐） | 在知识库目录创建 `construction-site/`，生成标准化 3 件套：`oqc-通信文件.md` + `preview-base.html` + `操作指南.md` |
+
+> ⚠️ 生成时角色名动态替换规则：Codex 代理名用当前会话代号，设计智能体名用 Q2a 获取的实际名称（未指定则默认「设计智能体」）。
+
+---
+
+### Q2c: preview-base 文件说明
+
+> 进入 Q3 功能选择之前，代理必须先向用户说明 preview-base.html 的概念：
+> - 这是一个可视化预览文件，用浏览器直接打开就能看到网页效果
+> - 生成位置：`项目目录/原型页面/preview-base.html`
+> - 用途：你在这里审阅设计智能体的 CSS 效果，**满意后再部署上线**——不用反复 push 看效果
+> - 设计智能体把 CSS 写进 preview-base，你看完说了「可以」，代理才 push 到线上
+
+---
 
 **Q3: 功能选择（逐区引导）**
 
@@ -179,13 +216,16 @@ v0.5b 不包含：
 
 ### Step 2: 生成 preview-base.html
 ### Step 2: 生成 preview-base.html
-> v0.5b 手动操作，详细步骤见 `references/preview-base-steps.md`
+> v0.5c 手动操作，详细步骤见 `references/preview-base-steps.md`
 
 1. 确认 `quartz.config.ts` 已按 Step 1 配置
 2. 执行 `npx quartz build`
 3. 复制 `public/index.html` 为 `preview-base.html`
 4. 在 `</head>` 前注入 `<style id="design-css"></style>`（空标签，等待设计智能体填充）
 5. 修正外部 CSS/JS 路径为 file:// 可访问路径
+6. **初次执行时自动注入**（后续执行跳过）：
+   - 在 `custom.scss` 中注入 6 个 `/* @zone:xxx */` 锚点（viewport / topbar / left-sidebar / center / right-sidebar / footer）
+   - 在 `custom.scss` 追加 `.breadcrumb-container { display: none !important; }`
 
 输出：`preview-base.html`（用户可用浏览器直接打开审阅）
 
@@ -193,13 +233,49 @@ v0.5b 不包含：
 
 ### Step 3: 迭代设计
 
-> 设计智能体（如文姬）读取 preview-base.html，撰写 CSS，通过沟通文件回传。
+> 设计智能体（如文姬）读取 preview-base.html，按流程撰写 CSS，通过沟通文件回传。
 
-1. 代理将 `preview-base.html` 路径写入沟通文件 `zone=design`
-2. 设计智能体打开文件，按 Step 1 约定的功能清单撰写 CSS
-3. 设计智能体将 CSS 写入沟通文件，按 @zone 分区
-4. 用户打开 preview-base.html 审阅视觉效果
-5. 通过 → 进 Step 4。不通过 → 描述问题 → 设计智能体改 CSS → 重复 3-5
+#### 3.1 启动设计智能体
+
+1. 代理在沟通文件中写入 `zone=layout` 信息（布局选择 + 功能清单）
+2. 通知设计智能体读取三个文件：
+   - `操作指南.md`（理解工作流）
+   - `preview-base.html`（理解页面框架）
+   - `oqc-通信文件.md`（读取 layout 信息）
+3. 设计智能体在沟通文件中写入 `zone=handshake · 已就绪` 确认
+
+#### 3.2 风格询问（设计智能体必须执行，不可跳过）
+
+设计智能体在产出 CSS 前，**必须**向用户询问：
+
+```
+zone=style-inquiry · 等待用户回应
+
+① 整体风格：温暖纸质 / 极简白 / 暗色学术 / 东方禅意 / 现代杂志 / 其他
+② 参考网页 URL（可多个）
+③ 设计"咒语"（自然语言描述，可选）
+④ 现成模板/色板（可选）
+```
+
+用户回答后，设计智能体才可开始撰写 CSS。
+
+#### 3.3 CSS 撰写规范（设计智能体遵守）
+
+- **所有 CSS 写入沟通文件**（不是直接改 preview-base.html）
+- **按 @zone 分区**（viewport / topbar / left-sidebar / center / footer）
+- **只写装饰性 CSS**：颜色、字体、间距、边框、阴影、圆角、hover 效果
+- **不写结构 CSS**：Grid、position、display、z-index 等（代理已在 preview-base 中搭好框架）
+- 完成后标注 `zone=design · 完成`
+
+#### 3.4 代理注入 + 用户审核
+
+1. 代理从沟通文件读取 zone=design 的 CSS
+2. 注入 `preview-base.html` 的 `<style id="design-css">` 标签
+3. 用户浏览器打开 `preview-base.html` 审核
+4. 通过 → 进 Step 4
+5. 不通过 → 用户描述问题 → 设计智能体修改 CSS → 重复 3.3-3.4
+
+> ⚠️ 此阶段不急于 push。先在本地把 preview-base 打磨到用户满意。
 
 ---
 
@@ -264,7 +340,7 @@ v0.5b 不包含：
 
 ## §6 版本路线
 
-- v0.5b（当前）：手动管线，逐步骤引导
+- v0.5c（当前）：手动管线，逐步骤引导
 - v1.0（规划）：脚本化 Apply，验收循环自动化
 
 ## §7 依赖的参考文件
@@ -276,14 +352,15 @@ v0.5b 不包含：
 | 所有步骤（遇到问题时） | `references/troubleshooting.md` |
 | 步骤 | 参考文件 |
 |------|---------|
-| Step 0/0a/0b | `templates/communication-template.md` |
+| Step 0/0a/0b/0c | `templates/communication-template.md` |
 | Step 1 | `references/16-anchors-mapping.md` |
 | Step 2 | `references/preview-base-steps.md` |
-| Step 3 | `references/design-directions.md`, `patches/example-warm-paper/` |
+| Step 3 | `references/design-directions.md`, `patches/example-warm-paper/`, `templates/操作指南.md` |
 | Step 4 | `references/diff-format-spec.md`, `references/deployment-checklist.md` |
 | Step 5 | `references/deployment-checklist.md` |
 | Step 6 | `templates/communication-template.md` |
 
 ---
 
-*obsidian-quartz-curator v0.5b*
+*obsidian-quartz-curator v0.5c*
+
