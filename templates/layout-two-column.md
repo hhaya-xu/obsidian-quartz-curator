@@ -76,13 +76,13 @@ footer {
 
 ## 与三栏布局对比
 
-| 项目 | 两栏 | 三栏 |
-|------|------|------|
-| grid-template-areas | `header header` / `left center` / `footer footer` | `header header header` / `left center right` / `footer footer footer` |
-| grid-template-columns | `260px 1fr` | `260px 1fr 320px` |
-| Graph / Backlinks | 排除 | 放在右栏 |
-| DesktopOnly(TableOfContents) | 可选移除 | 放在右栏 |
-| 适用场景 | 博客、笔记展示 | 文档站、知识库 |
+| 项目                         | 两栏                                              | 三栏                                                                  |
+| ---------------------------- | ------------------------------------------------- | --------------------------------------------------------------------- |
+| grid-template-areas          | `header header` / `left center` / `footer footer` | `header header header` / `left center right` / `footer footer footer` |
+| grid-template-columns        | `260px 1fr`                                       | `260px 1fr 320px`                                                     |
+| Graph / Backlinks            | 排除                                              | 放在右栏                                                              |
+| DesktopOnly(TableOfContents) | 可选移除                                          | 放在右栏                                                              |
+| 适用场景                     | 博客、笔记展示                                    | 文档站、知识库                                                        |
 
 ---
 
@@ -105,12 +105,12 @@ const defaultContentPageLayout: PageLayout = {
     // Component.Graph(),
     // Component.Backlinks(),
   ],
-}
+};
 
 export default {
   defaultContentPageLayout,
   // ...其他配置
-}
+};
 ```
 
 ---

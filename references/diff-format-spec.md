@@ -64,10 +64,14 @@ color: #b80;
 
 ```scss
 /* ✅ 正确 */
-.page-title:after { content: ""; }
+.page-title:after {
+  content: "";
+}
 
 /* ❌ 错误 */
-.page-title::after { content: ""; }
+.page-title::after {
+  content: "";
+}
 ```
 
 ### 3. 变量统一 `--wj-` 前缀
@@ -106,8 +110,6 @@ Patch 中的变更块搜索上下文必须包含对应的 `@zone` 注释，确�
 > **关键：锚点注释必须同时出现在 `-` 和 `+` 行中。**
 > 这样 Apply 后锚点不消失，验收循环中可重复 Apply 不会失败。
 
-
-
 以下是一个完整的 CSS Patch 文件，修改 site-title 和 article-body 两个锚点：
 
 ```
@@ -144,20 +146,20 @@ Patch 中的变更块搜索上下文必须包含对应的 `@zone` 注释，确�
 
 ## 约束速查
 
-| 规则 | 要求 | 原因 |
-|------|------|------|
-| 外层包裹 | `*** Begin/End Patch` | Codex `apply_patch` 工具解析协议 |
-| 文件指定 | `*** Update File:` + 相对路径 | 明确目标文件 |
-| 锚点分块 | 每个 `@zone` 独立一个 Patch | 精确定位、独立回滚 |
-| 变更格式 | `-` 旧行 / `+` 新行 | 标准 unified diff 格式 |
-| 色值 | 6 位 HEX | 可读性、Greppable、无歧义 |
-| 伪元素 | 单冒号 | Dart Sass 兼容 |
-| 变量前缀 | `--wj-` | 与 Quartz 原生变量隔离 |
-| 锚点注释 | `/* @zone:xxx */` | 设计智能体定位标记 |
+| 规则     | 要求                          | 原因                             |
+| -------- | ----------------------------- | -------------------------------- |
+| 外层包裹 | `*** Begin/End Patch`         | Codex `apply_patch` 工具解析协议 |
+| 文件指定 | `*** Update File:` + 相对路径 | 明确目标文件                     |
+| 锚点分块 | 每个 `@zone` 独立一个 Patch   | 精确定位、独立回滚               |
+| 变更格式 | `-` 旧行 / `+` 新行           | 标准 unified diff 格式           |
+| 色值     | 6 位 HEX                      | 可读性、Greppable、无歧义        |
+| 伪元素   | 单冒号                        | Dart Sass 兼容                   |
+| 变量前缀 | `--wj-`                       | 与 Quartz 原生变量隔离           |
+| 锚点注释 | `/* @zone:xxx */`             | 设计智能体定位标记               |
 
 ---
 
-*所有 CSS Patch 必须逐条满足以上约束方可交付。*
+_所有 CSS Patch 必须逐条满足以上约束方可交付。_
 
 ---
 
@@ -165,14 +167,14 @@ Patch 中的变更块搜索上下文必须包含对应的 `@zone` 注释，确�
 
 设计智能体在 preview-base.html 中使用 `--wj-` 前缀的 CSS 变量。代理转译到 custom.scss 时必须替换为对应的 Quartz 变量名。
 
-| 设计智能体变量 | 替换为 | HEX 值（暖纸系） | 用途 |
-|---------------|--------|-----------------|------|
-| `--wj-bg` | `--bg` | #ede3cf | 纸底 |
-| `--wj-surface` | `--surface` | #f4efe2 | 纸面 |
-| `--wj-fg` | `--fg` | #1c1814 | 墨 |
-| `--wj-muted` | `--muted` | #6b5f52 | 墨淡 |
-| `--wj-border` | `--border` | #d4c9b0 | 线 |
-| `--wj-accent` | `--accent` | #b8860b | 琥珀 |
-| `--wj-code-bg` | `--code-bg` | #f4efe2 | 代码底 |
+| 设计智能体变量 | 替换为      | HEX 值（暖纸系） | 用途   |
+| -------------- | ----------- | ---------------- | ------ |
+| `--wj-bg`      | `--bg`      | #ede3cf          | 纸底   |
+| `--wj-surface` | `--surface` | #f4efe2          | 纸面   |
+| `--wj-fg`      | `--fg`      | #1c1814          | 墨     |
+| `--wj-muted`   | `--muted`   | #6b5f52          | 墨淡   |
+| `--wj-border`  | `--border`  | #d4c9b0          | 线     |
+| `--wj-accent`  | `--accent`  | #b8860b          | 琥珀   |
+| `--wj-code-bg` | `--code-bg` | #f4efe2          | 代码底 |
 
 > 替换操作是 Step 4 CSS 转译的标准步骤。v1.0 `translate-css.ts` 脚本化时将作为核心逻辑。

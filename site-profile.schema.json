@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/oqc/site-profile.schema.json",
+  "title": "OQC Site Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "siteTitle",
+    "vaultPath",
+    "siteProjectPath",
+    "baseUrl",
+    "repositoryUrl"
+  ],
+  "properties": {
+    "siteTitle": { "type": "string", "minLength": 1 },
+    "siteSubtitle": { "type": ["string", "null"] },
+    "vaultPath": { "type": "string", "minLength": 1 },
+    "siteProjectPath": { "type": "string", "minLength": 1 },
+    "baseUrl": { "type": "string", "minLength": 1 },
+    "repositoryUrl": { "type": "string", "format": "uri" },
+    "locale": { "type": "string", "default": "zh-CN" },
+    "themeAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["light", "dark"],
+      "properties": {
+        "light": { "const": "standard-design" },
+        "dark": { "const": "night-ink" }
+      }
+    }
+  }
+}

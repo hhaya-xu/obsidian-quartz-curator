@@ -5,27 +5,22 @@
 
 ## 快速对比
 
-| 方向 | ID | --bg | --accent | 字体 | 适用场景 |
-|------|----|------|----------|------|----------|
-| 编辑杂志风 | editorial-monocle | #faf9f6 | #b85c3a | serif+sans | 策展、学术 |
-| 现代极简 | modern-minimal | #fafbfb | #3b82f6 | sans | SaaS 文档 |
-| 亲和人性化 | human-approachable | #f8f9fa | #10b981 | sans | 教育、工具 |
-| 技术工具风 | tech-utility | #f8f9fb | #22c55e | sans+mono | 运维、代码 |
-| 粗野实验派 | brutalist-experimental | #f8f9fa | #e03c28 | serif+mono | 艺术、出版 |
-| **暖纸学术** | **example-warm-paper** | **#ede3cf** | **#b8860b** | **宋体** | **知识库** |
+| 方向         | ID                     | --bg        | --accent    | 字体       | 适用场景   |
+| ------------ | ---------------------- | ----------- | ----------- | ---------- | ---------- |
+| 编辑杂志风   | editorial-monocle      | #faf9f6     | #b85c3a     | serif+sans | 策展、学术 |
+| 现代极简     | modern-minimal         | #fafbfb     | #3b82f6     | sans       | SaaS 文档  |
+| 亲和人性化   | human-approachable     | #f8f9fa     | #10b981     | sans       | 教育、工具 |
+| 技术工具风   | tech-utility           | #f8f9fb     | #22c55e     | sans+mono  | 运维、代码 |
+| 粗野实验派   | brutalist-experimental | #f8f9fa     | #e03c28     | serif+mono | 艺术、出版 |
+| **暖纸学术** | **example-warm-paper** | **#ede3cf** | **#b8860b** | **宋体**   | **知识库** |
 
 ---
 
 ## 1. editorial-monocle（编辑杂志风）
 
 ```css
---bg:      #faf9f6
---surface: #ffffff
---fg:      #2d2a24
---muted:   #6b6358
---border:  #e6e3db
---accent:  #b85c3a
---code-bg: #f4f2ed
+--bg: #faf9f6 --surface: #ffffff --fg: #2d2a24 --muted: #6b6358
+  --border: #e6e3db --accent: #b85c3a --code-bg: #f4f2ed;
 ```
 
 - 标题字体：serif display
@@ -35,13 +30,8 @@
 ## 2. modern-minimal（现代极简）
 
 ```css
---bg:      #fafbfb
---surface: #ffffff
---fg:      #1d2125
---muted:   #777c82
---border:  #e8eaec
---accent:  #3b82f6
---code-bg: #f4f5f7
+--bg: #fafbfb --surface: #ffffff --fg: #1d2125 --muted: #777c82
+  --border: #e8eaec --accent: #3b82f6 --code-bg: #f4f5f7;
 ```
 
 - 字体：system sans-serif 全站统一
@@ -50,13 +40,8 @@
 ## 3. human-approachable（亲和人性化）
 
 ```css
---bg:      #f8f9fa
---surface: #ffffff
---fg:      #1e293b
---muted:   #64748b
---border:  #e2e8f0
---accent:  #10b981
---code-bg: #f1f5f9
+--bg: #f8f9fa --surface: #ffffff --fg: #1e293b --muted: #64748b
+  --border: #e2e8f0 --accent: #10b981 --code-bg: #f1f5f9;
 ```
 
 - 字体：sans-serif
@@ -65,13 +50,8 @@
 ## 4. tech-utility（技术工具风）
 
 ```css
---bg:      #f8f9fb
---surface: #ffffff
---fg:      #1e293b
---muted:   #64748b
---border:  #e2e8f0
---accent:  #22c55e
---code-bg: #f1f5f9
+--bg: #f8f9fb --surface: #ffffff --fg: #1e293b --muted: #64748b
+  --border: #e2e8f0 --accent: #22c55e --code-bg: #f1f5f9;
 ```
 
 - 标题/正文：sans-serif 全站
@@ -81,13 +61,8 @@
 ## 5. brutalist-experimental（粗野实验派）
 
 ```css
---bg:      #f8f9fa
---surface: #ffffff
---fg:      #1a1a1a
---muted:   #595959
---border:  #1a1a1a
---accent:  #e03c28
---code-bg: #f0f0f0
+--bg: #f8f9fa --surface: #ffffff --fg: #1a1a1a --muted: #595959
+  --border: #1a1a1a --accent: #e03c28 --code-bg: #f0f0f0;
 ```
 
 - 标题字体：serif 超大字号
@@ -97,13 +72,8 @@
 ## 6. example-warm-paper（暖纸学术）✅ 有完整 Patch
 
 ```css
---bg:      #ede3cf
---surface: #f4efe2
---fg:      #1c1814
---muted:   #6b5f52
---border:  #d4c9b0
---accent:  #b8860b
---code-bg: #f4efe2
+--bg: #ede3cf --surface: #f4efe2 --fg: #1c1814 --muted: #6b5f52
+  --border: #d4c9b0 --accent: #b8860b --code-bg: #f4efe2;
 ```
 
 - 字体：全站宋体（Noto Serif SC / Songti SC / SimSun）
@@ -114,13 +84,13 @@
 
 ## 方向匹配建议
 
-| 知识库类型 | 推荐 | 备选 |
-|-----------|------|------|
-| 学术/研究笔记 | example-warm-paper | editorial-monocle |
-| 技术文档 | tech-utility | modern-minimal |
-| 个人博客 | editorial-monocle | human-approachable |
-| 团队文档 | modern-minimal | tech-utility |
-| 数字策展 | example-warm-paper | editorial-monocle |
+| 知识库类型    | 推荐               | 备选               |
+| ------------- | ------------------ | ------------------ |
+| 学术/研究笔记 | example-warm-paper | editorial-monocle  |
+| 技术文档      | tech-utility       | modern-minimal     |
+| 个人博客      | editorial-monocle  | human-approachable |
+| 团队文档      | modern-minimal     | tech-utility       |
+| 数字策展      | example-warm-paper | editorial-monocle  |
 
 ---
 

@@ -13,6 +13,7 @@
 **原因：** 国内网络对 GitHub HTTPS 协议间歇性阻断。
 
 **解决：** 改用 SSH。
+
 ```bash
 git remote set-url origin git@github.com:用户/仓库.git
 git push -u origin main --force
@@ -31,6 +32,7 @@ git push -u origin main --force
 **原因：** `Remove-Item .git -Recurse` 后，本地仓库级 git config 被清空。
 
 **解决：** 重新 init 后第一时间设置：
+
 ```bash
 git config user.email "邮箱"
 git config user.name "用户名"
@@ -47,6 +49,7 @@ git config user.name "用户名"
 **原因：** 远程仓库残留了旧提交的 Git 对象，与新 init 的仓库历史冲突。
 
 **解决：** 彻底重建——删除 `.git`，重新 `git init`，重新 add/commit/push。
+
 ```bash
 Remove-Item -Recurse -Force .git
 git init
@@ -92,6 +95,7 @@ git push -u origin main --force
 **原因：** 重新 init 时 `git branch -M main` 未执行，或远程默认分支是 `v5`。
 
 **解决：**
+
 ```bash
 git branch -M main
 git push -u origin main --force
@@ -118,6 +122,7 @@ git push -u origin main --force
 **原因：** `base.scss` 定义的 `grid-template-areas` 将 header 限制在中间列。
 
 **解决：** `custom.scss` 覆盖：
+
 ```scss
 #quartz-body {
   grid-template-areas: none !important;
@@ -138,11 +143,14 @@ git push -u origin main --force
 **原因：** `base.scss` 中 `.page > #quartz-body .sidebar` 定义了 `padding: 6rem 2rem 2rem 2rem`（具体度 0,2,1）。
 
 **解决：**
+
 ```scss
-.left.sidebar, .right.sidebar {
+.left.sidebar,
+.right.sidebar {
   padding: 0 !important;
 }
 ```
+
 需要 `!important`，因为 base.scss 选择器具体度更高。
 
 **已写入：** deployment-checklist 第 3 项。
@@ -168,6 +176,7 @@ git push -u origin main --force
 **原因：** `.quartz-cache/` 和 `public/` 残留旧编译产物。
 
 **解决：** 每次修改 TS/TSX 后清除：
+
 ```bash
 Remove-Item -Recurse -Force public, .quartz-cache -ErrorAction SilentlyContinue
 npx quartz build
@@ -194,6 +203,7 @@ npx quartz build
 **原因：** Quartz 对中文路径 URL 编码处理不完整。
 
 **解决：**
+
 1. 避免中文文件名（推荐）
 2. 或配置 `quartz.config.ts` 的 slug 映射
 
@@ -216,8 +226,12 @@ npx quartz build
 **原因：** Quartz 构建会将所有组件 CSS 打包进 `index.css`，与 layout 配置无关。
 
 **解决：** 用 `custom.scss` 的 `display: none` 隐藏不需要的组件壳。
+
 ```scss
-.page-header, .page-footer, .left.sidebar, .right.sidebar {
+.page-header,
+.page-footer,
+.left.sidebar,
+.right.sidebar {
   display: none !important;
 }
 ```
@@ -231,6 +245,7 @@ npx quartz build
 **原因：** Quartz v4 没有 npm 初始化命令。
 
 **正确方式：**
+
 ```bash
 git clone --depth 1 https://github.com/jackyzha0/quartz.git <dir>
 cd <dir>
@@ -244,6 +259,7 @@ npm install
 **现象：** `git clone https://github.com/jackyzha0/quartz.git` 超时。
 
 **替代方案：** 从已有 Quartz 项目复制框架文件（仅复制以下，不复制 content 和自定义文件）：
+
 - `.github/` `quartz/`
 - `package.json` `package-lock.json` `tsconfig.json`
 - `*.d.ts` `.gitignore` `.prettierrc`
@@ -262,6 +278,7 @@ npm install
 **原因：** PowerShell 5.x 的 `String.Replace()` 对多字节 UTF-8 字符处理不稳定，不是 `Set-Content` 的问题。
 
 **解决：** 使用 .NET API：
+
 ```powershell
 $txt = [System.IO.File]::ReadAllText($file, [System.Text.Encoding]::UTF8)
 $txt = $txt.Replace('old', 'new')
@@ -270,8 +287,7 @@ $txt = $txt.Replace('old', 'new')
 
 ---
 
-*obsidian-quartz-curator 经验顾问 · v0.5b*
-
+_obsidian-quartz-curator 经验顾问 · v0.6_
 
 ## 附录：追加模板
 
@@ -282,4 +298,31 @@ $txt = $txt.Replace('old', 'new')
 - **原因：** 一行根因
 - **修复：** 命令或配置修改
 
-追加后更新文件顶部日期。
+## 追加后更新文件顶部日期。
+
+## 四、Tailwind 相关
+
+### 4.1 Tailwind CDN 加载超时
+
+- **检查：** 浏览器 F12 → Network → 搜索 `tailwindcss`
+- **现象：** preview-base.html 打开后 Tailwind 类不生效，元素无样式。
+- **原因：** `cdn.tailwindcss.com` 在国内可能被墙或加载超时。
+- **修复：** 这不影响核心功能——视觉设计官仍可在 `<style id="design-css">` 中手写 CSS。
+
+### 4.2 Tailwind 类名在线上站不生效
+
+- **检查：** 线上站打开 F12 → Elements → 搜索 `bg-zinc-50` 等 Tailwind 类
+- **现象：** prototype 中用的 Tailwind 类在线上站完全不存在。
+- **原因：** Tailwind CDN 仅存在于 `preview-base.html`（prototype 阶段），线上站只加载 `custom.scss`。
+- **修复：** 这是正常的——伯喈需要把 `<style id="design-css">` 中的 CSS 翻译为 SCSS 写入 `custom.scss`。
+
+### 4.3 @apply 编译报错
+
+- **检查：** `npx quartz build` 报 `Unknown word @apply`
+- **现象：** `custom.scss` 中使用 `@apply` 后构建失败。
+- **原因：** Quartz 的 Dart Sass 不认识 Tailwind 的 `@apply` 指令——PostCSS 链路未配置 Tailwind 插件。
+- **修复：** 不用 `@apply`，直接写原生 SCSS。或参考 `style-extraction.md` 用 Codex 自动析出模块生成标准 SCSS。
+
+---
+
+_obsidian-quartz-curator 经验顾问 · v0.6_

@@ -1,0 +1,13 @@
+{
+  "siteTitle": "山海札记",
+  "siteSubtitle": "行旅与见闻",
+  "vaultPath": "C:\\Knowledge\\shanhai",
+  "siteProjectPath": "C:\\Sites\\shanhai",
+  "baseUrl": "example.github.io/shanhai",
+  "repositoryUrl": "https://github.com/example/shanhai",
+  "locale": "zh-CN",
+  "themeAuthority": {
+    "light": "standard-design",
+    "dark": "night-ink"
+  }
+}

@@ -1,5 +1,9 @@
-﻿public/
-.quartz-cache/
 node_modules/
-.DS_Store
+public/
+.quartz-cache/
+.playwright-cli/
+site-profile.local.json
+*.local.json
 *.log
+.DS_Store
+Thumbs.db

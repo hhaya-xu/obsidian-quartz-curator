@@ -72,10 +72,10 @@ footer {
 
 ---
 
-
 > **与 Patch 的关系：** 本模板使用 `#quartz-body` + `grid-template-areas`（具名区域，推荐方式）。
 > `patches/example-warm-paper/zone3-layout.patch` 使用 `.page` + `grid-template` shorthand（智慧树项目的实际实现）。
 > 两种方式均可实现三栏布局：
+>
 > - `grid-template-areas`：可读性好，适合自定义 Layout
 > - `grid-template` shorthand：紧凑，适合 Patch 交付
 > - 代理在 Step 4 转译时需统一为其中一种方式。建议以本模板的 `grid-template-areas` 为规范，Patch 仅作示例参考。
@@ -87,4 +87,3 @@ footer {
 - 右侧栏宽度固定 `320px`，左侧导航 `260px`，中间内容区自适应。
 - `TableOfContents` 使用 `MobileOnly()` 和 `DesktopOnly()` 分别放置于中间和右侧。
 - `Graph` 和 `Backlinks` 放在右侧栏，与目录形成信息聚合区域。
-

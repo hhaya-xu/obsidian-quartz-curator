@@ -1,0 +1,104 @@
+@mixin emit {
+  /*
+ * OQC v0.91 / phase 2.1R-B / Wenji theme tokens
+ * Light authority SHA256: FC1EA8CC47D57790F70AF7F865F0354EEC6849A53ECEEAA992771FED785635A2
+ * Dark authority SHA256:  17D8C74AA467DDED677EA3721A92CBFD24A252496999A1BC58E81786DED4BA8E
+ */
+
+  :root,
+  html[saved-theme="light"] {
+    /* Surfaces */
+    --oqc-page-bg: #ede3cf;
+    --oqc-sidebar-bg: #f4efe2;
+    --oqc-content-bg: #ede3cf;
+    --oqc-elevated-bg: #f4efe2;
+    --oqc-topbar-bg: #0a0a0f;
+
+    /* Text */
+    --oqc-text: #1c1814;
+    --oqc-text-muted: #7a7268;
+    --oqc-heading: #1c1814;
+    --oqc-topbar-text: #c4a85c;
+    --oqc-topbar-text-hover: #d4b86c;
+    --oqc-on-accent: #0a0a0f;
+
+    /* Actions and states */
+    --oqc-accent: #b8860b;
+    --oqc-accent-hover: #8b6914;
+    --oqc-link: #b8860b;
+    --oqc-link-hover: #8b6914;
+    --oqc-border: #d9d0c0;
+    --oqc-hover-bg: #e8ddc8;
+    --oqc-focus-ring: #1c1814;
+
+    /* Content surfaces */
+    --oqc-quote-bg: rgba(196, 168, 92, 0.05);
+    --oqc-quote-text: #5a5040;
+    --oqc-code-bg: #f4efe2;
+    --oqc-graph-bg: rgba(244, 239, 226, 0.5);
+    --oqc-overlay-bg: #f4efe2;
+
+    /* Typography */
+    --oqc-font-body: "Noto Serif SC", "Source Han Serif SC", serif;
+    --oqc-font-ui: "Inter", -apple-system, sans-serif;
+    --oqc-font-heading: "Noto Serif SC", "Source Han Serif SC", serif;
+    --oqc-font-code: "JetBrains Mono", "Fira Code", monospace;
+
+    /* Geometry */
+    --oqc-sidebar-width: 240px;
+    --oqc-content-max: 820px;
+    --oqc-topbar-height: 64px;
+    --oqc-radius-sm: 6px;
+    --oqc-radius-md: 8px;
+    --oqc-border-width: 1px;
+    --oqc-border-width-hairline: 0.5px;
+  }
+
+  html[saved-theme="dark"] {
+    /* Surfaces */
+    --oqc-page-bg: #1a1814;
+    --oqc-sidebar-bg: #232020;
+    --oqc-content-bg: #1a1814;
+    --oqc-elevated-bg: #232020;
+    --oqc-topbar-bg: #0d0c0a;
+
+    /* Text */
+    --oqc-text: #e8ddc8;
+    --oqc-text-muted: #8b8378;
+    --oqc-heading: #d4a85c;
+    --oqc-topbar-text: #d4a85c;
+    --oqc-topbar-text-hover: #e8b870;
+    --oqc-on-accent: #0d0c0a;
+
+    /* Actions and states */
+    --oqc-accent: #d4a85c;
+    --oqc-accent-hover: #e8b870;
+    --oqc-link: #d4a85c;
+    --oqc-link-hover: #d4a85c;
+    --oqc-border: #3a3530;
+    --oqc-hover-bg: #2a2520;
+    --oqc-focus-ring: #e8ddc8;
+
+    /* Content surfaces */
+    --oqc-quote-bg: rgba(212, 168, 92, 0.04);
+    --oqc-quote-text: #8b8378;
+    --oqc-code-bg: #232020;
+    --oqc-graph-bg: #232020;
+    --oqc-overlay-bg: #232020;
+
+    /* Typography */
+    --oqc-font-body: "Noto Serif SC", "Source Han Serif SC", serif;
+    --oqc-font-ui: "Inter", sans-serif;
+    --oqc-font-heading: "Noto Serif SC", "Source Han Serif SC", serif;
+    --oqc-font-code: "JetBrains Mono", monospace;
+
+    /* Geometry */
+    --oqc-sidebar-width: 240px;
+    --oqc-content-max: 820px;
+    --oqc-topbar-height: 64px;
+    --oqc-radius-sm: 4px;
+    --oqc-radius-md: 6px;
+    --oqc-border-width: 1px;
+    --oqc-border-width-hairline: 1px;
+  }
+}
