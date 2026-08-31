@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hhaya-xu/obsidian-quartz-curator/schemas/incident.schema.json",
+  "title": "OQC v1.1 incident",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "runId",
+    "stage",
+    "errorCode",
+    "status",
+    "owner",
+    "action",
+    "safeResume"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "oqc.incident.v1" },
+    "runId": { "type": "string", "minLength": 1 },
+    "stage": { "type": "string", "minLength": 1 },
+    "errorCode": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["OPEN", "RESOLVED"] },
+    "owner": { "enum": ["知识库管理者", "馆长", "伯喈"] },
+    "action": { "type": "string" },
+    "safeResume": { "type": "string" }
+  }
+}

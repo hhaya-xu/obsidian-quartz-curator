@@ -1,13 +1,20 @@
 {
-  "siteTitle": "山海札记",
-  "siteSubtitle": "行旅与见闻",
-  "vaultPath": "C:\\Knowledge\\shanhai",
-  "siteProjectPath": "C:\\Sites\\shanhai",
-  "baseUrl": "example.github.io/shanhai",
-  "repositoryUrl": "https://github.com/example/shanhai",
-  "locale": "zh-CN",
-  "themeAuthority": {
-    "light": "standard-design",
-    "dark": "night-ink"
+  "siteId": "example-site",
+  "siteTitle": "示例知识库",
+  "siteSubtitle": "由 OQC 管理",
+  "vaultPath": "C:\\Knowledge\\example-vault",
+  "siteProjectPath": "C:\\Sites\\example-site",
+  "baseUrl": "example.github.io/example-site",
+  "liveUrl": "https://example.github.io/example-site/",
+  "repositoryUrl": "https://github.com/example/example-site.git",
+  "branch": "main",
+  "fontOrigin": "local",
+  "privacy": {
+    "phoneMode": "redact-public-copy"
+  },
+  "content": {
+    "homeSource": "HOME.md",
+    "homeTarget": "index.md",
+    "excludeDirectories": ["docs"]
   }
 }

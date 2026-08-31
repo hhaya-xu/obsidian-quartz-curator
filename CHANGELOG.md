@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.0]
+
+- Added strict certification and minimal publication dual entrypoints.
+- Added isolated builds, transactional rollback, approval binding, unified remote handling, content path safety, non-zero public self-tests, and governance migration notes.
+
 ## [1.0.0] - 2026-08-27
 
 ### Added

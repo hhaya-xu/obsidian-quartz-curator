@@ -1,13 +1,5 @@
-# OQC v1.0.0
+# OQC v1.1.0 Candidate Notes
 
-OQC v1.0.0 是首个经过真实知识库、Quartz 正式构建、桌面与手机浏览器、GitHub Pages 线上发布共同验证的稳定版本。
+This candidate targets Node.js 22+ and Quartz 4.5.2 certification surfaces. Registered sites use the manager's alias-only daily path.
 
-## 兼容性
-
-- Quartz: 4.5.2
-- Node.js: 22 或更高
-- 主要验收浏览器: Chrome
-
-## 发布边界
-
-技术通过不自动等于视觉批准或发布批准。站点拥有者必须独立裁决 `visualApproval` 与 `releaseApproval`。
+This document does not grant `oqcProductReleaseApproval`. Without the principal's separate explicit approval, it does not mean v1.1.0 has been committed, tagged, pushed, or published.

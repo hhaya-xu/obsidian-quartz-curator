@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hhaya-xu/obsidian-quartz-curator/schemas/run-result.schema.json",
+  "title": "OQC v1.1 run result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "runId",
+    "mode",
+    "technicalStatus",
+    "privacyStatus",
+    "releaseApproval",
+    "pushStatus",
+    "liveVerification",
+    "incidentStatus"
+  ],
+  "properties": {
+    "schemaVersion": { "const": "oqc.run-result.v1" },
+    "runId": { "type": "string", "minLength": 1 },
+    "mode": { "enum": ["strict", "fast"] },
+    "technicalStatus": { "enum": ["NOT_RUN", "PASS", "FAIL"] },
+    "privacyStatus": { "enum": ["NOT_RUN", "PASS", "FAIL"] },
+    "releaseApproval": { "type": "boolean", "default": false },
+    "pushStatus": { "enum": ["NOT_STARTED", "PUSHED", "FAILED"] },
+    "liveVerification": { "enum": ["NOT_STARTED", "PASS", "FAIL"] },
+    "incidentStatus": { "enum": ["NONE", "OPEN", "RESOLVED"] }
+  }
+}

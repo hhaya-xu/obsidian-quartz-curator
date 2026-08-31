@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hhaya-xu/obsidian-quartz-curator/schemas/site-profile.schema.json",
+  "title": "OQC v1.1 private site profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "siteId",
+    "siteTitle",
+    "vaultPath",
+    "siteProjectPath",
+    "baseUrl",
+    "liveUrl",
+    "repositoryUrl"
+  ],
+  "properties": {
+    "siteId": { "type": "string", "minLength": 1 },
+    "siteTitle": { "type": "string", "minLength": 1 },
+    "siteSubtitle": { "type": ["string", "null"] },
+    "vaultPath": { "type": "string", "minLength": 1 },
+    "siteProjectPath": { "type": "string", "minLength": 1 },
+    "baseUrl": { "type": "string", "pattern": "^(?!https?://).+" },
+    "liveUrl": { "type": "string", "pattern": "^https://" },
+    "repositoryUrl": {
+      "type": "string",
+      "pattern": "^(https://github\\.com/|git@github\\.com:)"
+    },
+    "branch": { "type": "string", "default": "main" },
+    "fontOrigin": { "enum": ["local", "googleFonts"], "default": "local" },
+    "contentDirectory": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!\\.$)(?![A-Za-z]:)(?![/\\\\])(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$))(?!.*[*?\\[\\]]).+$",
+      "default": "content"
+    },
+    "runtimeDirectory": { "type": "string", "default": ".oqc-runtime" },
+    "locale": { "type": "string", "default": "zh-CN" },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "phoneMode": { "const": "redact-public-copy" }
+      },
+      "required": ["phoneMode"]
+    },
+    "themeAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "light": { "const": "standard-design" },
+        "dark": { "const": "night-ink" }
+      },
+      "required": ["light", "dark"]
+    },
+    "content": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "homeSource": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[?*\\[\\]]).+"
+        },
+        "homeTarget": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[?*\\[\\]]).+"
+        },
+        "excludeDirectories": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?![A-Za-z]:)(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*[?*\\[\\]]).+"
+          },
+          "default": []
+        }
+      },
+      "dependentRequired": {
+        "homeSource": ["homeTarget"],
+        "homeTarget": ["homeSource"]
+      }
+    }
+  }
+}

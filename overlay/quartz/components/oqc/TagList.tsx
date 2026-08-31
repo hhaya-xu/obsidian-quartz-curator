@@ -17,7 +17,7 @@ const TagList: QuartzComponent = ({
     <ul class={classNames(displayClass, "oqc-tags")}>
       {tags.map((tag: string) => (
         <li>
-          <a href={`${baseDir}tags/${tag}`} class="oqc-tag">
+          <a href={`${baseDir}/tags/${tag}`} class="oqc-tag">
             {tag}
           </a>
         </li>
