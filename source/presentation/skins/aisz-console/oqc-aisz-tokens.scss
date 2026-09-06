@@ -1,0 +1,40 @@
+@mixin emit {
+  html[data-oqc-skin="aisz-console"],
+  html[data-oqc-skin="aisz-console"][saved-theme="light"] {
+    --oqc-aisz-page: #fafaf7;
+    --oqc-aisz-card: #ffffff;
+    --oqc-aisz-card-raised: #ffffff;
+    --oqc-aisz-text: #191919;
+    --oqc-aisz-text-muted: #666663;
+    --oqc-aisz-border: #e5e4df;
+    --oqc-aisz-primary: #cc785c;
+    --oqc-aisz-primary-hover: #b9654a;
+    --oqc-aisz-focus: #cc785c;
+    --oqc-aisz-font-ui: "Public Sans", "Inter", sans-serif;
+    --oqc-aisz-font-reading: "Lora Variable", "Noto Serif SC", serif;
+    --oqc-aisz-font-code: ui-monospace, "JetBrains Mono", monospace;
+    --oqc-aisz-radius-sm: 8px;
+    --oqc-aisz-radius-md: 12px;
+    --oqc-aisz-radius-lg: 16px;
+    --oqc-aisz-shadow: 0 4px 12px rgb(0 0 0 / 5%);
+  }
+
+  html[data-oqc-skin="aisz-console"][saved-theme="dark"] {
+    --oqc-aisz-page: #191919;
+    --oqc-aisz-card: #262624;
+    --oqc-aisz-card-raised: #2d2b29;
+    --oqc-aisz-text: #e5e4df;
+    --oqc-aisz-text-muted: #aaa7a1;
+    --oqc-aisz-border: rgb(255 255 255 / 10%);
+    --oqc-aisz-primary: #cc785c;
+    --oqc-aisz-primary-hover: #d4a27f;
+    --oqc-aisz-focus: #d4a27f;
+    --oqc-aisz-font-ui: "Public Sans", "Inter", sans-serif;
+    --oqc-aisz-font-reading: "Lora Variable", "Noto Serif SC", serif;
+    --oqc-aisz-font-code: ui-monospace, "JetBrains Mono", monospace;
+    --oqc-aisz-radius-sm: 8px;
+    --oqc-aisz-radius-md: 12px;
+    --oqc-aisz-radius-lg: 16px;
+    --oqc-aisz-shadow: 0 4px 12px rgb(0 0 0 / 30%);
+  }
+}
