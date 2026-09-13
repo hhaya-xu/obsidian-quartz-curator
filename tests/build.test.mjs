@@ -52,6 +52,19 @@ test("build passes normalized presentation settings to Quartz", async () => {
   );
 });
 
+test("build does not replace a packagePath presentation with standard-design", async () => {
+  let options;
+  await buildQuartz({
+    siteProjectPath: "site",
+    presentation: { packagePath: "packages/custom-package" },
+    run: async (_command, _args, passed) => {
+      options = passed;
+      return { exitCode: 0 };
+    },
+  });
+  assert.notEqual(options.env.OQC_SKIN, "standard-design");
+});
+
 test("build launches the real Quartz bootstrap entry on Windows", async () => {
   const root = await mkdtemp(path.join(os.tmpdir(), "oqc-core-build-real-"));
   try {

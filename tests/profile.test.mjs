@@ -57,9 +57,8 @@ test("normalizes a presentation Profile and relative hero video", async () => {
   }
 });
 
-test("rejects unsupported skins and incomplete heroes", async () => {
+test("rejects incomplete heroes while allowing arbitrary package ids", async () => {
   for (const presentation of [
-    { skin: "unknown" },
     {
       skin: "standard-design",
       hero: {
@@ -76,6 +75,66 @@ test("rejects unsupported skins and incomplete heroes", async () => {
       vaultPath: "vault",
       siteProjectPath: "site",
       presentation,
+    });
+    try {
+      await assert.rejects(loadCoreProfile(file), /CORE_PROFILE_INVALID/u);
+    } finally {
+      await rm(root, { recursive: true, force: true });
+    }
+  }
+});
+
+test("accepts the iruwangsu archive skin", async () => {
+  const { root, file } = await profileFile({
+    vaultPath: "vault",
+    siteProjectPath: "site",
+    presentation: { skin: "iruwangsu-archive" },
+  });
+  try {
+    const profile = await loadCoreProfile(file);
+    assert.equal(profile.presentation.skin, "iruwangsu-archive");
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("resolves an arbitrary packagePath relative to the Profile", async () => {
+  const { root, file } = await profileFile({
+    vaultPath: "vault",
+    siteProjectPath: "site",
+    presentation: { packagePath: "packages/custom-package" },
+  });
+  try {
+    const profile = await loadCoreProfile(file);
+    assert.equal(
+      profile.presentation.packagePath,
+      path.join(root, "packages", "custom-package"),
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("accepts any safe package id without a skin whitelist", async () => {
+  const { root, file } = await profileFile({
+    vaultPath: "vault",
+    siteProjectPath: "site",
+    presentation: { skin: "custom-package" },
+  });
+  try {
+    const profile = await loadCoreProfile(file);
+    assert.equal(profile.presentation.skin, "custom-package");
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("rejects path traversal in legacy skin package ids", async () => {
+  for (const skin of ["../x", "a/b", "a\\b"]) {
+    const { root, file } = await profileFile({
+      vaultPath: "vault",
+      siteProjectPath: "site",
+      presentation: { skin },
     });
     try {
       await assert.rejects(loadCoreProfile(file), /CORE_PROFILE_INVALID/u);

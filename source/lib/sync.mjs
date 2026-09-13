@@ -72,7 +72,21 @@ export async function syncContent({
   for (const [relative, source] of desired) {
     const target = path.join(siteContentPath, ...relative.split("/"));
     await mkdir(path.dirname(target), { recursive: true });
-    await writeFile(target, await readFile(source.absolute));
+    let bytes = await readFile(source.absolute);
+    if (
+      relative === content.homeTarget &&
+      content.homeHeading !== undefined &&
+      source.relative === content.homeSource
+    ) {
+      const text = bytes.toString("utf8");
+      if (!/^# (?!#)\S.*$/mu.test(text))
+        throw new Error("CORE_HOME_HEADING_NOT_FOUND");
+      bytes = Buffer.from(
+        text.replace(/^# (?!#)\S.*$/mu, `# ${content.homeHeading}`),
+        "utf8",
+      );
+    }
+    await writeFile(target, bytes);
     copied.push(relative);
   }
   const deleted = [];

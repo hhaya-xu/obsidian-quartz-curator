@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "iruwangsu-archive",
+  "revision": "1",
+  "quartzVersion": "4.5.2",
+  "frozen": true,
+  "compatibility": {
+    "fingerprint": "sha256:4d7fab7d583e9aae694eb1c905e4d89e337927f8199d4e1377563e4805856159",
+    "files": [
+      "package.json",
+      "quartz.layout.ts",
+      "quartz/components/renderPage.tsx",
+      "quartz/styles/custom.scss"
+    ]
+  },
+  "files": [
+    {
+      "source": "components/IruwangsuHero.tsx",
+      "target": "quartz/components/oqc/IruwangsuHero.tsx"
+    }
+  ],
+  "layout": {
+    "beforeBody": [
+      {
+        "identifier": "IruwangsuHero",
+        "importPath": "./quartz/components/oqc/IruwangsuHero"
+      }
+    ]
+  }
+}

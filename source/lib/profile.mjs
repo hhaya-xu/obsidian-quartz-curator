@@ -1,7 +1,6 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-
-const skins = new Set(["standard-design", "aisz-console"]);
+import { fileURLToPath } from "node:url";
 
 function text(value) {
   return typeof value === "string" && value.trim() !== "";
@@ -38,18 +37,39 @@ export async function loadCoreProfile(profilePath) {
       (await readFile(absolutePath, "utf8")).replace(/^\uFEFF/u, ""),
     );
     const base = path.dirname(absolutePath);
+    const sourceRoot = path.resolve(
+      path.dirname(fileURLToPath(import.meta.url)),
+      "..",
+    );
     if (!text(value.vaultPath) || !text(value.siteProjectPath))
       throw new Error("CORE_PROFILE_INVALID");
     const presentation = value.presentation
       ? {
           ...value.presentation,
-          skin: value.presentation.skin ?? "standard-design",
+          ...(value.presentation.skin !== undefined &&
+          (typeof value.presentation.skin !== "string" ||
+            !/^[A-Za-z0-9._-]+$/u.test(value.presentation.skin))
+            ? (() => {
+                throw new Error("CORE_PROFILE_INVALID");
+              })()
+            : {}),
+          packagePath: value.presentation.packagePath
+            ? path.resolve(base, value.presentation.packagePath)
+            : value.presentation.skin
+              ? path.join(
+                  sourceRoot,
+                  "presentation",
+                  "packages",
+                  value.presentation.skin,
+                )
+              : null,
+          skin: value.presentation.skin ?? null,
           hero: value.presentation.hero
             ? normalizeHero(value.presentation.hero, base)
             : null,
         }
       : null;
-    if (presentation && !skins.has(presentation.skin))
+    if (presentation && !presentation.packagePath)
       throw new Error("CORE_PROFILE_INVALID");
     return {
       ...value,

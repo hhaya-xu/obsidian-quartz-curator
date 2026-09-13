@@ -116,3 +116,55 @@ test("sync preserves Obsidian Canvas files as public knowledge content", async (
     '{"nodes":[],"edges":[]}',
   );
 });
+
+test("sync persists a configured homepage heading without changing the Vault", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "oqc-core-sync-heading-"));
+  temporaryRoots.push(root);
+  const vault = path.join(root, "vault");
+  const site = path.join(root, "site-content");
+  await mkdir(vault);
+  await mkdir(site);
+  await writeFile(path.join(vault, "HOME.md"), "# Old home\n\nBody");
+  await writeFile(path.join(vault, "article.md"), "# Article\n\nText");
+  const before = await readFile(path.join(vault, "HOME.md"));
+  await syncContent({
+    vaultPath: vault,
+    siteContentPath: site,
+    content: {
+      homeSource: "HOME.md",
+      homeTarget: "index.md",
+      homeHeading: "知识库导览",
+    },
+  });
+  assert.equal(
+    await readFile(path.join(site, "index.md"), "utf8"),
+    "# 知识库导览\n\nBody",
+  );
+  assert.deepEqual(await readFile(path.join(vault, "HOME.md")), before);
+  assert.equal(
+    await readFile(path.join(site, "article.md"), "utf8"),
+    "# Article\n\nText",
+  );
+});
+
+test("sync rejects a configured homepage heading when the source has no H1", async () => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "oqc-core-sync-heading-"));
+  temporaryRoots.push(root);
+  const vault = path.join(root, "vault");
+  const site = path.join(root, "site-content");
+  await mkdir(vault);
+  await mkdir(site);
+  await writeFile(path.join(vault, "HOME.md"), "Body only");
+  await assert.rejects(
+    syncContent({
+      vaultPath: vault,
+      siteContentPath: site,
+      content: {
+        homeSource: "HOME.md",
+        homeTarget: "index.md",
+        homeHeading: "知识库导览",
+      },
+    }),
+    /CORE_HOME_HEADING_NOT_FOUND/u,
+  );
+});

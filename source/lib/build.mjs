@@ -17,7 +17,7 @@ export async function buildQuartz({
 }) {
   const buildEnv = {
     ...process.env,
-    OQC_SKIN: presentation?.skin ?? "standard-design",
+    OQC_SKIN: presentation?.skin ?? "",
     OQC_HOME_HERO: presentation?.hero
       ? JSON.stringify({
           ...presentation.hero,

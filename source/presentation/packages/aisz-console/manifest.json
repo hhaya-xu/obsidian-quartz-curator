@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "aisz-console",
+  "revision": "1",
+  "quartzVersion": "4.5.2",
+  "frozen": true,
+  "compatibility": {
+    "fingerprint": "sha256:fcb553ff9b286f0a9765c03d699a03fa71ac6272ff03f113ab6bbc374efa83a4",
+    "files": [
+      "package.json",
+      "quartz.layout.ts",
+      "quartz/components/renderPage.tsx",
+      "quartz/styles/custom.scss"
+    ]
+  },
+  "files": [
+    {
+      "source": "components/ArticleTitle.tsx",
+      "target": "quartz/components/oqc/ArticleTitle.tsx"
+    },
+    {
+      "source": "components/ContentMeta.tsx",
+      "target": "quartz/components/oqc/ContentMeta.tsx"
+    },
+    {
+      "source": "components/TagList.tsx",
+      "target": "quartz/components/oqc/TagList.tsx"
+    }
+  ],
+  "layout": {
+    "beforeBody": []
+  }
+}

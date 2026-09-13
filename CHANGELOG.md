@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.2.1 Core
+
+- Added generic manifest-driven visual package installation with compatibility fingerprints and repeatable layout/style integration.
+- Migrated AISZ and 入流亡所 presentation sources into independent visual packages.
+- Added profile-driven home heading persistence without modifying the Vault source.
+- Kept the core chain as presentation, content sync, Quartz build, and Git publish.
+
 ## v1.2.0 Core
 
 - Added private Profile loading with deterministic `--profile` and `--site` entry points.
@@ -8,7 +15,17 @@
 - Added optional profile-driven 16:9 HomeHero with responsive and reduced-motion behavior.
 - Kept the core chain as presentation, content sync, Quartz build, and Git publish.
 
-## v1.0
+## [1.0.0] - 2026-08-27
 
-- Established the original OQC core publish path and private site profile workflow.
-- Added content mirroring, Quartz build execution, and Git publication adapters.
+### Added
+
+- Quartz 4.5.2 的 OQC 结构契约与生产 overlay。
+- “标准设计稿”浅色主题和“夜读墨黑”暗色主题。
+- Search、Darkmode、Explorer、Graph、Popover、Mermaid 与 SPA 运行时适配。
+- 可复用 `site-profile` 与确定性站点配置渲染器。
+- Vault 审计、真实浏览器验收、视觉批准和发布批准边界。
+- GitHub Pages 项目子路径静态资源解析。
+
+### Changed
+
+- 公共发行物不再绑定任何具体知识库、仓库或本机绝对路径。

@@ -20,7 +20,7 @@ const run = (args) =>
 test("core CLI exposes only the core publish path", () => {
   const version = run(["--version"]);
   assert.equal(version.status, 0, version.stderr);
-  assert.equal(version.stdout.trim(), "1.2.0");
+  assert.equal(version.stdout.trim(), "1.2.1");
   const help = run(["--help"]);
   assert.equal(help.status, 0, help.stderr);
   assert.match(help.stdout, /oqc core publish --profile <file>/u);

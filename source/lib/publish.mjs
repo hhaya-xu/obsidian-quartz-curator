@@ -3,6 +3,7 @@ import { publishGit } from "./git-publish.mjs";
 import { loadCoreProfile } from "./profile.mjs";
 import { applyPresentation } from "./presentation.mjs";
 import { syncContent } from "./sync.mjs";
+import path from "node:path";
 const defaults = { applyPresentation, syncContent, buildQuartz, publishGit };
 export async function publishCore({ profilePath, adapters = defaults }) {
   const profile = await loadCoreProfile(profilePath);
@@ -36,4 +37,3 @@ export async function publishCore({ profilePath, adapters = defaults }) {
     presentationStatus: presentationResult.status,
   };
 }
-import path from "node:path";

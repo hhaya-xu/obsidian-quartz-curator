@@ -1,6 +1,6 @@
 {
   "name": "obsidian-quartz-curator",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": false,
   "scripts": {
     "test": "node --test ../tests/*.test.mjs"

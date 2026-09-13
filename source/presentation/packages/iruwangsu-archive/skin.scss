@@ -1,0 +1,243 @@
+@mixin emit {
+  html[data-oqc-skin="iruwangsu-archive"] {
+    --irw-blue: #0846d9;
+    --irw-blue-deep: #062d91;
+    --irw-blue-bright: #3d72ee;
+    --irw-blue-pale: #d7e2ff;
+    --irw-paper: #fffdf8;
+    --irw-warm: #f4f1e8;
+    --irw-ink: #091a39;
+    --irw-text: #34415a;
+    --irw-muted: #67718a;
+    --irw-red: #e43c46;
+    --irw-rule: rgba(9, 26, 57, 0.18);
+    --irw-serif: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+    --irw-ui: system-ui, "Microsoft YaHei", sans-serif;
+    --irw-mono: "IBM Plex Mono", "Cascadia Mono", monospace;
+    --background-primary: var(--irw-paper);
+    --background-secondary: var(--irw-warm);
+    --text-normal: var(--irw-text);
+    --text-muted: var(--irw-muted);
+    --text-accent: var(--irw-blue);
+  }
+  html[data-oqc-skin="iruwangsu-archive"][saved-theme="dark"] {
+    --irw-paper: #0b1530;
+    --irw-warm: #111b34;
+    --irw-ink: #f5f1e8;
+    --irw-text: #d7ddeb;
+    --irw-muted: #a7b0c5;
+    --irw-rule: rgba(215, 226, 255, 0.2);
+  }
+
+  html[data-oqc-skin="iruwangsu-archive"] {
+    body {
+      background: var(--irw-paper);
+      color: var(--irw-text);
+      font-family: var(--irw-serif);
+    }
+    .page > #quartz-body {
+      grid-template-columns: 260px minmax(0, 1fr);
+      grid-template-areas: "grid-sidebar-left grid-header" "grid-sidebar-left grid-center" "grid-sidebar-left grid-footer";
+      column-gap: 0;
+      row-gap: 0;
+    }
+    .page > #quartz-body > .sidebar.right,
+    .page > #quartz-body .sidebar.right {
+      display: none;
+    }
+    .page > #quartz-body > .center {
+      grid-column: 2;
+      grid-row: 1 / -1;
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+    }
+    .page > #quartz-body > .center > .page-header {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+    }
+    .left.sidebar {
+      background: var(--irw-warm);
+      border-right: 1px solid var(--irw-rule);
+    }
+    .irw-hero {
+      position: relative;
+      min-height: 395px;
+      margin: 0;
+      padding: 2.35rem clamp(2rem, 6vw, 5.4rem) 4.75rem;
+      overflow: hidden;
+      background: var(--irw-blue);
+      color: var(--irw-paper);
+    }
+    .irw-hero__meta {
+      position: relative;
+      z-index: 1;
+      font: 600 0.72rem/1 var(--irw-mono);
+      letter-spacing: 0.14em;
+      opacity: 0.85;
+    }
+    .irw-hero h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 4rem 0 1.4rem;
+      color: var(--irw-paper);
+      font-family: var(--irw-serif);
+      font-size: clamp(3rem, 7vw, 5.7rem);
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+    .irw-hero p {
+      position: relative;
+      z-index: 1;
+      color: var(--irw-blue-pale);
+      font-family: var(--irw-ui);
+    }
+    .irw-orbit {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .irw-orbit--field {
+      width: 290px;
+      height: 290px;
+      right: -80px;
+      top: -95px;
+      background: var(--irw-blue-bright);
+    }
+    .irw-orbit--ring {
+      width: 158px;
+      height: 158px;
+      right: 62px;
+      bottom: 38px;
+      border: 25px solid var(--irw-paper);
+    }
+    .irw-orbit--mark {
+      width: 12px;
+      height: 12px;
+      right: 46px;
+      bottom: 43px;
+      background: var(--irw-red);
+    }
+    .irw-color-ribbon {
+      display: grid;
+      grid-template-columns: 64% 24% 12%;
+      height: 18px;
+    }
+    .irw-color-ribbon i:nth-child(1) {
+      background: var(--irw-blue-deep);
+    }
+    .irw-color-ribbon i:nth-child(2) {
+      background: #6790f3;
+    }
+    .irw-color-ribbon i:nth-child(3) {
+      background: var(--irw-red);
+    }
+    .center > article {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 3.5rem clamp(2rem, 6vw, 5.4rem) 5rem;
+      color: var(--irw-text);
+      font-family: var(--irw-serif);
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
+      line-height: 1.95;
+    }
+    .center > article h2 {
+      color: var(--irw-blue-deep);
+      font-family: var(--irw-serif);
+    }
+    .center > article h2::before {
+      content: "";
+      display: block;
+      width: 72px;
+      height: 8px;
+      margin-bottom: 1rem;
+      background: var(--irw-blue);
+    }
+    .center > article blockquote {
+      padding: 0 0 0 1.25rem;
+      color: var(--irw-ink);
+      background: transparent;
+      border: 0;
+      border-left: 4px solid var(--irw-blue);
+      border-radius: 0;
+    }
+    .left.sidebar .explorer a,
+    .left.sidebar .explorer a:visited,
+    .left.sidebar .folder-container a,
+    .left.sidebar .folder-container button,
+    .left.sidebar .folder-button,
+    .left.sidebar .folder-container button span,
+    .left.sidebar .folder-icon {
+      color: var(--irw-ink);
+      background: transparent;
+    }
+    .left.sidebar .explorer a:hover,
+    .left.sidebar .explorer a.active,
+    .left.sidebar .folder-container a:hover,
+    .left.sidebar .folder-container button:hover,
+    .left.sidebar .folder-button:hover,
+    .left.sidebar .folder-container button:hover span,
+    .left.sidebar .folder-icon:hover {
+      color: var(--irw-blue);
+      background: transparent;
+    }
+    .left.sidebar .explorer a.active {
+      border-bottom: 1px solid var(--irw-blue);
+    }
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--irw-blue-deep);
+      outline-offset: 3px;
+    }
+    .irw-hero ~ .article-title,
+    .irw-hero ~ .content-meta,
+    .irw-hero ~ .tag-list {
+      display: none;
+    }
+  }
+  @media all and (max-width: 800px) {
+    html[data-oqc-skin="iruwangsu-archive"] {
+      .page > #quartz-body {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas: "grid-sidebar-left" "grid-header" "grid-center" "grid-footer";
+        padding: 0;
+      }
+      .page > #quartz-body > .center {
+        grid-column: 1;
+        grid-row: auto;
+      }
+      .left.sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        border-right: 0;
+        border-bottom: 1px solid var(--irw-rule);
+      }
+      .irw-hero {
+        min-height: 330px;
+        padding: 1.8rem 1.25rem 4rem;
+      }
+      .irw-color-ribbon {
+        height: 12px;
+      }
+      .center > article {
+        padding: 2.5rem 1.25rem 4rem;
+      }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html[data-oqc-skin="iruwangsu-archive"] *,
+    html[data-oqc-skin="iruwangsu-archive"] *::before,
+    html[data-oqc-skin="iruwangsu-archive"] *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
